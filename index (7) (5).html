@@ -1,0 +1,739 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="Advocate Pratik Mahato — Professional Portfolio. Legal services, contact & appointment." />
+  <title>Advocate Pratik Mahato | Professional Portfolio</title>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Custom Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Outfit', 'sans-serif'],
+            mono: ['Roboto Mono', 'monospace'],
+          },
+          colors: {
+            'primary-accent': 'rgb(34, 197, 94)',
+            'dark-bg': '#121212',
+            'dark-card': '#1e1e1e',
+          },
+          animation: {
+            'spin-slow': 'spin-slow 10s linear infinite',
+          },
+          keyframes: {
+            'spin-slow': {
+              '0%': { transform: 'rotate(0deg)' },
+              '100%': { transform: 'rotate(360deg)' },
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Custom styles for timeline, rotating badge, and navbar */
+    .timeline-line {
+      position: absolute;
+      left: 18px;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: #e6e6f9;
+    }
+    .timeline-item {
+      position: relative;
+      padding-left: 48px;
+    }
+
+    .hero-badge {
+      position: absolute;
+      bottom: 18px;
+      right: 18px;
+      width: 112px;
+      height: 112px;
+      border-radius: 9999px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(34, 197, 94, 0.06);
+      border: 2px dashed rgba(34, 197, 94, 0.22);
+      overflow: visible;
+    }
+    .badge-text {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      animation: rotateText 18s linear infinite;
+      pointer-events: none;
+    }
+    @keyframes rotateText {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+    .badge-text span {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      font-size: 12px;
+      transform-origin: 0 -40px;
+      white-space: nowrap;
+      color: rgb(34, 197, 94);
+      font-weight: 600;
+    }
+
+    .card-hover {
+      transition: transform .22s ease, box-shadow .22s ease;
+    }
+    .card-hover:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+    }
+    .dark .card-hover:hover {
+      box-shadow: 0 12px 30px rgba(0,0,0,0.24);
+    }
+
+    .navbar-scrolled {
+      background-color: rgba(255, 255, 255, 0.94);
+      box-shadow: 0 4px 6px -1px rgba(0,0,0,0.06);
+      backdrop-filter: blur(6px);
+    }
+    .dark .navbar-scrolled {
+      background-color: rgba(18, 18, 18, 0.9);
+    }
+
+    .translate-x-full {
+      transform: translateX(100%);
+    }
+    .no-scroll {
+      overflow: hidden;
+    }
+
+    .badge {
+      padding: 0.25rem 1rem;
+      font-size: 0.875rem;
+      border-radius: 9999px;
+      background-color: rgba(34, 197, 94, 0.1);
+      border: 1px solid rgb(34, 197, 94);
+      color: rgb(34, 197, 94);
+      transition: all 0.2s ease;
+    }
+    .badge:hover {
+      background-color: rgb(34, 197, 94);
+      color: #121212;
+    }
+
+    /* Accessibility helpers */
+    .sr-only {
+      position: absolute;
+      left: -10000px;
+      top: auto;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+    }
+  </style>
+</head>
+
+<body class="bg-white dark:bg-dark-bg text-gray-900 dark:text-gray-100 transition-colors duration-300 font-sans">
+  <!-- Skip link for accessibility -->
+  <a class="sr-only focus:not-sr-only focus:block p-2 m-2 bg-primary-accent text-dark-bg rounded" href="#main-content">Skip to content</a>
+
+  <!-- Navigation Bar -->
+  <nav id="navbar" class="fixed top-0 left-0 w-full z-50 transition-all duration-300 backdrop-blur-sm">
+    <div class="container mx-auto px-4 sm:px-8 py-4 flex justify-between items-center">
+      <!-- Logo/Name -->
+      <a href="#home" class="flex items-center gap-3 nav-link">
+        <div class="w-10 h-10 bg-primary-accent rounded-full flex items-center justify-center text-white font-semibold">PM</div>
+        <span class="font-semibold">Pratik Mahato</span>
+      </a>
+
+      <!-- Desktop Menu -->
+      <div class="hidden md:flex items-center gap-8">
+        <a href="#home" class="text-sm hover:text-primary-accent transition duration-200 nav-link">Home</a>
+        <a href="#about" class="text-sm hover:text-primary-accent transition duration-200 nav-link">About</a>
+        <a href="#services" class="text-sm hover:text-primary-accent transition duration-200 nav-link">Services</a>
+        <a href="#experience" class="text-sm hover:text-primary-accent transition duration-200 nav-link">Experience</a>
+        <a href="#contact" class="text-sm hover:text-primary-accent transition duration-200 nav-link">Contact</a>
+
+        <!-- Dark Mode Toggle -->
+        <button id="theme-toggle" aria-label="Toggle theme" class="ml-3 p-2 rounded-full hover:bg-gray-100 dark:hover:bg-dark-card transition duration-200">
+          <i class="fas fa-moon dark:hidden" aria-hidden="true"></i>
+          <i class="fas fa-sun hidden dark:block" aria-hidden="true"></i>
+        </button>
+      </div>
+
+      <!-- Mobile Controls -->
+      <div class="md:hidden flex items-center gap-2">
+        <button id="theme-toggle-mobile" aria-label="Toggle theme" class="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-dark-card transition duration-200">
+          <i class="fas fa-moon dark:hidden" aria-hidden="true"></i>
+          <i class="fas fa-sun hidden dark:block" aria-hidden="true"></i>
+        </button>
+        <button id="mobile-open" aria-label="Open menu" aria-expanded="false" class="p-2 rounded-md hover:bg-gray-100 dark:hover:bg-dark-card transition duration-200">
+          <i class="fas fa-bars" aria-hidden="true"></i>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <aside id="mobile-menu" class="fixed inset-y-0 right-0 w-72 bg-white dark:bg-dark-card shadow-lg z-50 transform translate-x-full transition-transform duration-300" aria-hidden="true">
+    <div class="p-4 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <div class="w-9 h-9 bg-primary-accent rounded-full text-white flex items-center justify-center font-semibold">PM</div>
+        <div class="font-medium">Menu</div>
+      </div>
+      <button id="mobile-close" aria-label="Close menu" class="p-2 rounded-md hover:bg-gray-100 dark:hover:bg-dark-bg transition duration-200">
+        <i class="fas fa-times" aria-hidden="true"></i>
+      </button>
+    </div>
+    <nav class="p-4 flex flex-col gap-3" aria-label="Mobile navigation">
+      <a href="#home" class="py-2 px-3 rounded-md hover:bg-gray-100 dark:hover:bg-dark-bg transition duration-200 mobile-link nav-link">Home</a>
+      <a href="#about" class="py-2 px-3 rounded-md hover:bg-gray-100 dark:hover:bg-dark-bg transition duration-200 mobile-link nav-link">About</a>
+      <a href="#services" class="py-2 px-3 rounded-md hover:bg-gray-100 dark:hover:bg-dark-bg transition duration-200 mobile-link nav-link">Services</a>
+      <a href="#experience" class="py-2 px-3 rounded-md hover:bg-gray-100 dark:hover:bg-dark-bg transition duration-200 mobile-link nav-link">Experience</a>
+      <a href="#contact" class="py-2 px-3 rounded-md hover:bg-gray-100 dark:hover:bg-dark-bg transition duration-200 mobile-link nav-link">Contact</a>
+      <a href="https://wa.me/7477367137" class="py-2 px-3 mt-2 rounded-md bg-green-50 text-green-700 hover:bg-green-100 transition duration-200">WhatsApp</a>
+    </nav>
+  </aside>
+
+  <main id="main-content" class="pt-24">
+    <!-- Hero Section -->
+    <section id="home" class="pt-8 pb-16 px-4">
+      <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+        <div>
+          <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight">Welcome — Namaste!</h1>
+          <p class="mt-2 text-primary-accent text-xl font-semibold">Advocate Pratik Mahato</p>
+          <p class="mt-4 text-gray-600 dark:text-gray-300 max-w-2xl">Driven by passion, purpose, and professionalism in India's justice system.</p>
+
+          <div class="mt-6 flex flex-col sm:flex-row gap-3">
+            <a href="#contact" class="inline-flex items-center gap-2 px-5 py-3 bg-primary-accent text-dark-bg rounded-lg shadow-sm hover:bg-green-600 transition duration-200 nav-link">Schedule Consultation</a>
+            <a id="resume-btn" href="#" class="inline-flex items-center gap-2 px-5 py-3 border border-primary-accent text-primary-accent rounded-lg hover:bg-green-50 dark:hover:bg-dark-card transition duration-200">My Resume</a>
+          </div>
+
+          <div class="mt-6 text-sm text-gray-500">
+            <strong>Email:</strong> <a href="mailto:pratikmahato7@gmail.com" class="text-primary-accent">pratikmahato7@gmail.com</a>
+          </div>
+        </div>
+
+        <div class="relative max-w-md mx-auto">
+          <!-- Hero Image -->
+          <img class="rounded-xl shadow-lg w-full object-cover" alt="Portrait of Pratik Mahato" src="https://raw.githubusercontent.com/Pallab-office-LAW-1/Pratik-Mahato/4d9607163961dbb529e64ab40e6e095d314e79dc/IMG-20251101-WA0000.jpg">
+
+          <!-- Rotating circular text badge -->
+          <div class="hero-badge" aria-hidden="true">
+            <div class="badge-text" aria-hidden="true">
+              <span style="transform:rotate(0deg) translateX(44px) rotate(0deg)">L</span>
+              <span style="transform:rotate(30deg) translateX(44px) rotate(-30deg)">E</span>
+              <span style="transform:rotate(60deg) translateX(44px) rotate(-60deg)">G</span>
+              <span style="transform:rotate(90deg) translateX(44px) rotate(-90deg)">A</span>
+              <span style="transform:rotate(120deg) translateX(44px) rotate(-120deg)">L</span>
+              <span style="transform:rotate(150deg) translateX(44px) rotate(-150deg)">•</span>
+              <span style="transform:rotate(180deg) translateX(44px) rotate(-180deg)">E</span>
+              <span style="transform:rotate(210deg) translateX(44px) rotate(-210deg)">X</span>
+              <span style="transform:rotate(240deg) translateX(44px) rotate(-240deg)">P</span>
+              <span style="transform:rotate(270deg) translateX(44px) rotate(-270deg)">E</span>
+              <span style="transform:rotate(300deg) translateX(44px) rotate(-300deg)">R</span>
+              <span style="transform:rotate(330deg) translateX(44px) rotate(-330deg)">T</span>
+            </div>
+            <i class="fas fa-balance-scale text-primary-accent text-2xl" aria-hidden="true"></i>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-16 bg-gray-50 dark:bg-dark-card">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="text-3xl md:text-4xl font-bold text-center">About Me</h2>
+
+        <div class="mt-10 grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
+          <div class="lg:col-span-1">
+            <div class="relative">
+              <img src="https://raw.githubusercontent.com/Pallab-office-LAW-1/Pratik-Mahato/4d9607163961dbb529e64ab40e6e095d314e79dc/IMG-20251101-WA0000.jpg" alt="About portrait" class="rounded-xl shadow-md w-full object-cover">
+              <img src="https://raw.githubusercontent.com/Pallab-office-LAW-1/Pallab-LAW-0ffice-/86c7cf3b360349d078cac4176db61caf41887090/lady-justice-C6l91QTL.jpg" alt="Lady Justice" class="absolute -bottom-6 -right-6 w-20 h-20 rounded-full border-4 border-white dark:border-dark-card shadow">
+            </div>
+          </div>
+
+          <div class="lg:col-span-2">
+            <h3 class="text-2xl font-semibold">Lady Justice</h3>
+            <p class="mt-4 text-gray-600 dark:text-gray-300">I'm Pratik Mahato, a dedicated legal professional holding an LL.B. degree, currently practising at the Purulia District Court, West Bengal. With an unwavering commitment to justice and constitutional integrity, I aim to represent clients with fairness, clarity, and confidence.</p>
+            <p class="mt-3 text-gray-600 dark:text-gray-300">Every case is more than paperwork—it's a human story seeking justice.</p>
+
+            <blockquote class="mt-6 border-l-4 border-primary-accent pl-4 italic text-gray-700 dark:text-gray-300">"Justice delayed is justice denied. I stand to make it delivered."</blockquote>
+
+            <div class="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+              <div class="card-hover bg-white dark:bg-dark-bg p-5 rounded-lg shadow">
+                <div class="flex items-start gap-3">
+                  <div class="w-12 h-12 bg-green-100 dark:bg-green-900 rounded-full flex items-center justify-center"><i class="fas fa-gavel text-primary-accent" aria-hidden="true"></i></div>
+                  <div>
+                    <h4 class="font-semibold">Criminal Law</h4>
+                    <p class="text-sm text-gray-600 dark:text-gray-300 mt-1">FIRs, bail applications, IPC offences & criminal trials.</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="card-hover bg-white dark:bg-dark-bg p-5 rounded-lg shadow">
+                <div class="flex items-start gap-3">
+                  <div class="w-12 h-12 bg-green-100 dark:bg-green-900 rounded-full flex items-center justify-center"><i class="fas fa-home text-primary-accent" aria-hidden="true"></i></div>
+                  <div>
+                    <h4 class="font-semibold">Family Law</h4>
+                    <p class="text-sm text-gray-600 dark:text-gray-300 mt-1">Divorce, maintenance, custody, and domestic matters.</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="card-hover bg-white dark:bg-dark-bg p-5 rounded-lg shadow">
+                <div class="flex items-start gap-3">
+                  <div class="w-12 h-12 bg-green-100 dark:bg-green-900 rounded-full flex items-center justify-center"><i class="fas fa-balance-scale text-primary-accent" aria-hidden="true"></i></div>
+                  <div>
+                    <h4 class="font-semibold">Property Law</h4>
+                    <p class="text-sm text-gray-600 dark:text-gray-300 mt-1">Land disputes, deed registration & property documentation.</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="card-hover bg-white dark:bg-dark-bg p-5 rounded-lg shadow">
+                <div class="flex items-start gap-3">
+                  <div class="w-12 h-12 bg-green-100 dark:bg-green-900 rounded-full flex items-center justify-center"><i class="fas fa-building text-primary-accent" aria-hidden="true"></i></div>
+                  <div>
+                    <h4 class="font-semibold">Constitutional Matters</h4>
+                    <p class="text-sm text-gray-600 dark:text-gray-300 mt-1">Rights protection, Article 21, PILs & writ petitions.</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="card-hover bg-white dark:bg-dark-bg p-5 rounded-lg shadow">
+                <div class="flex items-start gap-3">
+                  <div class="w-12 h-12 bg-green-100 dark:bg-green-900 rounded-full flex items-center justify-center"><i class="fas fa-file-alt text-primary-accent" aria-hidden="true"></i></div>
+                  <div>
+                    <h4 class="font-semibold">Legal Drafting</h4>
+                    <p class="text-sm text-gray-600 dark:text-gray-300 mt-1">Contracts, affidavits, notices & legal documentation.</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="card-hover bg-white dark:bg-dark-bg p-5 rounded-lg shadow">
+                <div class="flex items-start gap-3">
+                  <div class="w-12 h-12 bg-green-100 dark:bg-green-900 rounded-full flex items-center justify-center"><i class="fas fa-search text-primary-accent" aria-hidden="true"></i></div>
+                  <div>
+                    <h4 class="font-semibold">Legal Consultation</h4>
+                    <p class="text-sm text-gray-600 dark:text-gray-300 mt-1">Professional advice with a focus on transparency and trust.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-16 px-4">
+      <div class="max-w-6xl mx-auto">
+        <h2 class="text-3xl md:text-4xl font-bold text-center">Legal Services</h2>
+        <p class="text-center mt-3 text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">Providing comprehensive legal assistance with a focus on integrity, professionalism, and client satisfaction.</p>
+
+        <div class="mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div class="card-hover bg-white dark:bg-dark-card rounded-lg p-6 shadow">
+            <div class="w-16 h-16 bg-green-100 dark:bg-green-900 rounded-full flex items-center justify-center mb-4">
+              <i class="fas fa-handshake text-primary-accent text-2xl" aria-hidden="true"></i>
+            </div>
+            <h3 class="font-semibold text-xl">Comprehensive Legal Assistance</h3>
+            <p class="mt-2 text-gray-600 dark:text-gray-300 text-sm">Providing tailored solutions built on experience and ethics.</p>
+          </div>
+
+          <div class="card-hover bg-white dark:bg-dark-card rounded-lg p-6 shadow">
+            <div class="w-16 h-16 bg-green-100 dark:bg-green-900 rounded-full flex items-center justify-center mb-4">
+              <i class="fas fa-file-contract text-primary-accent text-2xl" aria-hidden="true"></i>
+            </div>
+            <h3 class="font-semibold text-xl">Court Representation</h3>
+            <p class="mt-2 text-gray-600 dark:text-gray-300 text-sm">Effective advocacy in trial and district court matters.</p>
+          </div>
+
+          <div class="card-hover bg-white dark:bg-dark-card rounded-lg p-6 shadow">
+            <div class="w-16 h-16 bg-green-100 dark:bg-green-900 rounded-full flex items-center justify-center mb-4">
+              <i class="fas fa-gavel text-primary-accent text-2xl" aria-hidden="true"></i>
+            </div>
+            <h3 class="font-semibold text-xl">Research & Documentation</h3>
+            <p class="mt-2 text-gray-600 dark:text-gray-300 text-sm">Accurate case studies using SCC Online & Indian Kanoon.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="py-16 bg-gray-50 dark:bg-dark-card">
+      <div class="max-w-6xl mx-auto px-4">
+        <h2 class="text-3xl md:text-4xl font-bold text-center">Experience & Career Path</h2>
+        <p class="text-center mt-3 text-gray-600 dark:text-gray-300">A timeline of academic growth and practical legal experience.</p>
+
+        <div class="relative mt-10">
+          <div class="timeline-line hidden sm:block" aria-hidden="true"></div>
+
+          <div class="space-y-8">
+            <article class="timeline-item bg-white dark:bg-dark-bg p-5 rounded-lg shadow-sm">
+              <time class="text-xs text-gray-500 dark:text-gray-300">2020 — LLB Graduation</time>
+              <h3 class="mt-2 font-semibold">Completed Bachelor of Laws (LLB)</h3>
+              <p class="mt-1 text-sm text-gray-600 dark:text-gray-300">Graduated with specialization in criminal and civil law procedures.</p>
+            </article>
+
+            <article class="timeline-item bg-white dark:bg-dark-bg p-5 rounded-lg shadow-sm">
+              <time class="text-xs text-gray-500 dark:text-gray-300">2021 — Present</time>
+              <h3 class="mt-2 font-semibold">Started Practice at Purulia District Court</h3>
+              <p class="mt-1 text-sm text-gray-600 dark:text-gray-300">Gaining practical experience in criminal, civil and family law matters.</p>
+            </article>
+
+            <article class="timeline-item bg-white dark:bg-dark-bg p-5 rounded-lg shadow-sm">
+              <time class="text-xs text-gray-500 dark:text-gray-300">2023 — Legal Documentation & Research</time>
+              <h3 class="mt-2 font-semibold">Enhanced Legal Practice</h3>
+              <p class="mt-1 text-sm text-gray-600 dark:text-gray-300">Focused on drafting, petitions & client representation.</p>
+            </article>
+
+            <article class="timeline-item bg-white dark:bg-dark-bg p-5 rounded-lg shadow-sm">
+              <time class="text-xs text-gray-500 dark:text-gray-300">Future</time>
+              <h3 class="mt-2 font-semibold">Continuing Professional Growth</h3>
+              <p class="mt-1 text-sm text-gray-600 dark:text-gray-300">Building foundation for future practice and contributions to justice.</p>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="py-16 px-4">
+      <div class="max-w-6xl mx-auto">
+        <h2 class="text-3xl md:text-4xl font-bold text-center">Professional References</h2>
+        <div class="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6">
+          <blockquote class="p-6 bg-white dark:bg-dark-card rounded-lg shadow card-hover">
+            <p class="text-gray-700 dark:text-gray-200">"Adv. Pratik's calm approach and clarity in legal reasoning make him dependable and effective." — Senior Advocate S. Chatterjee, Purulia District Court</p>
+          </blockquote>
+          <blockquote class="p-6 bg-white dark:bg-dark-card rounded-lg shadow card-hover">
+            <p class="text-gray-700 dark:text-gray-200">"His dedication to fair practice and professionalism reflects his true legal spirit." — A. Dutta, Client</p>
+          </blockquote>
+          <blockquote class="p-6 bg-white dark:bg-dark-card rounded-lg shadow card-hover">
+            <p class="text-gray-700 dark:text-gray-200">"Pratik combines academic knowledge with practical insight. His commitment to justice is evident." — R. Basak, Court Clerk</p>
+          </blockquote>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-16 bg-gray-50 dark:bg-dark-card">
+      <div class="max-w-5xl mx-auto px-4">
+        <h2 class="text-3xl md:text-4xl font-bold text-center">Contact & Appointment</h2>
+        <p class="text-center mt-2 text-gray-600 dark:text-gray-300">Ready to discuss your legal matter? Get in touch for a consultation.</p>
+
+        <div class="mt-8 grid grid-cols-1 md:grid-cols-2 gap-8">
+          <!-- Contact form: opens Gmail compose window with form data -->
+          <form id="contact-form" action="#" method="POST" class="space-y-4 bg-white dark:bg-dark-bg p-6 rounded-lg shadow" novalidate>
+            <!-- We'll open Gmail compose in a new tab on submit using JS -->
+            <input type="hidden" id="email-to" value="pratikmahato7@gmail.com" />
+            <input type="hidden" id="form-subject" value="New appointment request from website" />
+
+            <div>
+              <label for="fullname" class="text-sm font-medium">Full Name *</label>
+              <input id="fullname" name="name" required class="mt-1 block w-full rounded-md border border-gray-200 dark:border-gray-600 bg-transparent px-3 py-2" />
+            </div>
+
+            <div>
+              <label for="email" class="text-sm font-medium">Email Address *</label>
+              <input id="email" name="email" type="email" required class="mt-1 block w-full rounded-md border border-gray-200 dark:border-gray-600 bg-transparent px-3 py-2" />
+            </div>
+
+            <div>
+              <label for="phone" class="text-sm font-medium">Phone Number (optional)</label>
+              <input id="phone" name="phone" type="tel" class="mt-1 block w-full rounded-md border border-gray-200 dark:border-gray-600 bg-transparent px-3 py-2" />
+            </div>
+
+            <div>
+              <label for="message" class="text-sm font-medium">Brief Description *</label>
+              <textarea id="message" name="message" rows="5" required class="mt-1 block w-full rounded-md border border-gray-200 dark:border-gray-600 bg-transparent px-3 py-2"></textarea>
+            </div>
+
+            <div class="flex items-center gap-3">
+              <button id="send-msg" type="submit" class="inline-flex items-center gap-2 px-4 py-2 bg-primary-accent text-dark-bg rounded-md hover:bg-green-600 transition duration-200">Send Message (Open in Gmail)</button>
+              <div id="contact-status" class="text-sm text-gray-600 dark:text-gray-300"></div>
+            </div>
+            <p class="text-xs text-gray-500 dark:text-gray-400">Privacy: Your contact details will only be used to respond to your query.</p>
+          </form>
+
+          <aside class="space-y-6">
+            <div class="p-6 bg-white dark:bg-dark-bg rounded-lg shadow">
+              <h3 class="font-semibold">Office</h3>
+              <p class="text-sm text-gray-600 dark:text-gray-300 mt-2">Purulia District Court, West Bengal</p>
+              <p class="text-sm text-gray-600 dark:text-gray-300 mt-1">Email: <a class="text-primary-accent" href="mailto:pratikmahato7@gmail.com">pratikmahato7@gmail.com</a></p>
+              <p class="text-sm text-gray-600 dark:text-gray-300 mt-1">Phone: <a class="text-primary-accent" href="tel:7477367137">7477367137</a></p>
+            </div>
+
+            <div class="p-6 bg-white dark:bg-dark-bg rounded-lg shadow">
+              <h3 class="font-semibold">Availability</h3>
+              <p class="text-sm text-gray-600 dark:text-gray-300 mt-2">Consultations by appointment only. Court appearances as scheduled.</p>
+
+              <div class="mt-4 flex gap-3">
+                <a class="p-2 rounded-md hover:bg-gray-100 dark:hover:bg-dark-card transition duration-200" href="https://wa.me/7477367137" aria-label="WhatsApp"><i class="fab fa-whatsapp text-2xl text-green-600" aria-hidden="true"></i></a>
+                <a class="p-2 rounded-md hover:bg-gray-100 dark:hover:bg-dark-card transition duration-200" href="#" aria-label="LinkedIn (placeholder)"><i class="fab fa-linkedin text-2xl text-primary-accent" aria-hidden="true"></i></a>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-gray-900 dark:bg-black text-gray-400 py-10">
+    <div class="container mx-auto max-w-6xl px-4">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-8 border-b border-gray-700 pb-8 mb-8">
+        <!-- Logo/Branding -->
+        <div class="col-span-2 md:col-span-1">
+          <a href="#home" class="flex items-center gap-3 mb-2 nav-link">
+            <div class="w-9 h-9 bg-primary-accent rounded-full text-dark-bg flex items-center justify-center font-semibold">PM</div>
+            <div class="font-semibold text-white">Adv. Pratik Mahato</div>
+          </a>
+          <p class="text-sm">Committed legal practitioner serving clients with diligence and integrity.</p>
+        </div>
+
+        <!-- Quick Links -->
+        <div>
+          <h5 class="font-semibold text-white mb-3">Quick Links</h5>
+          <ul class="space-y-2 text-sm">
+            <li><a href="#about" class="hover:text-primary-accent transition duration-200 nav-link">About</a></li>
+            <li><a href="#services" class="hover:text-primary-accent transition duration-200 nav-link">Services</a></li>
+            <li><a href="#experience" class="hover:text-primary-accent transition duration-200 nav-link">Experience</a></li>
+            <li><a href="#contact" class="hover:text-primary-accent transition duration-200 nav-link">Contact</a></li>
+          </ul>
+        </div>
+
+        <!-- Contact Info -->
+        <div>
+          <h5 class="font-semibold text-white mb-3">Contact Info</h5>
+          <ul class="space-y-2 text-sm">
+            <li><i class="fas fa-map-marker-alt mr-2" aria-hidden="true"></i> Purulia Court, West Bengal</li>
+            <li><i class="fas fa-envelope mr-2" aria-hidden="true"></i> pratikmahato7@gmail.com</li>
+            <li><i class="fas fa-phone mr-2" aria-hidden="true"></i> 7477367137</li>
+          </ul>
+        </div>
+
+        <!-- Social Media -->
+        <div>
+          <h5 class="font-semibold text-white mb-3">Connect</h5>
+          <div class="flex space-x-4 text-xl">
+            <a href="#" class="hover:text-primary-accent transition duration-200"><i class="fab fa-linkedin" aria-hidden="true"></i></a>
+            <a href="#" class="hover:text-primary-accent transition duration-200"><i class="fab fa-instagram" aria-hidden="true"></i></a>
+            <a href="#" class="hover:text-primary-accent transition duration-200"><i class="fab fa-facebook" aria-hidden="true"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Copyright -->
+      <div class="text-center text-sm">
+        &copy; <span id="year"></span> Pratik Mahato. All rights reserved.
+      </div>
+    </div>
+  </footer>
+
+  <!-- JavaScript -->
+  <script>
+    (function(){
+      // Footer year
+      document.getElementById('year').textContent = new Date().getFullYear();
+
+      // Theme: prefers & localStorage
+      var root = document.documentElement;
+      try {
+        var stored = localStorage.getItem('pm-theme');
+        var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+        var setDark = function (value) {
+          if (value) root.classList.add('dark'); else root.classList.remove('dark');
+          try { localStorage.setItem('pm-theme', value ? '1' : '0'); } catch (e) { /* ignore */ }
+        };
+        if (stored === null) setDark(prefersDark);
+        else setDark(stored === '1');
+
+        var btn1 = document.getElementById('theme-toggle');
+        var btn2 = document.getElementById('theme-toggle-mobile');
+        var btns = [];
+        if (btn1) btns.push(btn1);
+        if (btn2) btns.push(btn2);
+        btns.forEach(function (b) { b.addEventListener('click', function () { setDark(!root.classList.contains('dark')); }); });
+      } catch (e) {
+        // don't block site if localStorage or matchMedia fails
+      }
+
+      // Mobile menu open/close
+      var mobileMenu = document.getElementById('mobile-menu');
+      var openBtn = document.getElementById('mobile-open');
+      var closeBtn = document.getElementById('mobile-close');
+      var body = document.body;
+      function openMenu() {
+        if (!mobileMenu) return;
+        mobileMenu.classList.remove('translate-x-full');
+        mobileMenu.setAttribute('aria-hidden', 'false');
+        body.classList.add('no-scroll');
+        if (openBtn) openBtn.setAttribute('aria-expanded', 'true');
+      }
+      function closeMenu() {
+        if (!mobileMenu) return;
+        mobileMenu.classList.add('translate-x-full');
+        mobileMenu.setAttribute('aria-hidden', 'true');
+        body.classList.remove('no-scroll');
+        if (openBtn) openBtn.setAttribute('aria-expanded', 'false');
+      }
+      if (openBtn) openBtn.addEventListener('click', openMenu);
+      if (closeBtn) closeBtn.addEventListener('click', closeMenu);
+
+      // Close menu on mobile link click
+      var mobileLinks = document.querySelectorAll('.mobile-link');
+      if (mobileLinks && mobileLinks.length) {
+        Array.prototype.forEach.call(mobileLinks, function (a) {
+          a.addEventListener('click', function () { closeMenu(); });
+        });
+      }
+
+      // Close on Escape
+      document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeMenu(); });
+
+      // Close when clicking outside (mobile)
+      document.addEventListener('click', function (e) {
+        if (!mobileMenu) return;
+        var target = e.target || e.srcElement;
+        var clickedInside = mobileMenu.contains(target);
+        var clickedToggle = openBtn && openBtn.contains(target);
+        if (!clickedInside && !clickedToggle) closeMenu();
+      });
+
+      // Dynamic Navbar on Scroll
+      var navbar = document.getElementById('navbar');
+      function onScroll() {
+        if (!navbar) return;
+        if (window.scrollY > 50) navbar.classList.add('navbar-scrolled');
+        else navbar.classList.remove('navbar-scrolled');
+      }
+      window.addEventListener('scroll', onScroll);
+      onScroll();
+
+      // Active nav highlight using IntersectionObserver with fallback
+      var sections = document.querySelectorAll('main section[id]');
+      var links = document.querySelectorAll('.nav-link');
+      if ('IntersectionObserver' in window && sections && sections.length && links && links.length) {
+        var observer = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              var id = entry.target.id;
+              Array.prototype.forEach.call(links, function (a) {
+                try {
+                  if (a.getAttribute('href') === '#' + id) a.classList.add('text-primary-accent');
+                  else a.classList.remove('text-primary-accent');
+                } catch (e) { /* ignore */ }
+              });
+            }
+          });
+        }, { rootMargin: '-40% 0% -40% 0%', threshold: 0 });
+        Array.prototype.forEach.call(sections, function (s) { observer.observe(s); });
+      } else {
+        // Fallback: highlight on click and on hashchange
+        Array.prototype.forEach.call(links, function (a) {
+          a.addEventListener('click', function () {
+            Array.prototype.forEach.call(links, function (b) { b.classList.remove('text-primary-accent'); });
+            a.classList.add('text-primary-accent');
+          });
+        });
+        window.addEventListener('hashchange', function () {
+          var id = location.hash ? location.hash.replace('#', '') : '';
+          Array.prototype.forEach.call(links, function (a) {
+            if (a.getAttribute('href') === '#' + id) a.classList.add('text-primary-accent');
+            else a.classList.remove('text-primary-accent');
+          });
+        });
+      }
+
+      // Resume button handling
+      var resumeBtn = document.getElementById('resume-btn');
+      // If you have a resume PDF, replace resumeUrl with the direct raw URL
+      var resumeUrl = '#'; // <-- Replace this with actual URL to resume PDF
+      if (resumeBtn) {
+        resumeBtn.addEventListener('click', function (e) {
+          if (resumeUrl === '#') {
+            e.preventDefault();
+            alert('Resume URL not set. To enable resume download, replace the resumeUrl variable in the HTML with a direct PDF link.');
+          } else {
+            // open in new tab safely
+            window.open(resumeUrl, '_blank', 'noopener,noreferrer');
+          }
+        });
+      }
+
+      // Contact form: open Gmail compose with prefilled content
+      var contactForm = document.getElementById('contact-form');
+      var statusDiv = document.getElementById('contact-status');
+      var emailToInput = document.getElementById('email-to');
+      var defaultSubjectInput = document.getElementById('form-subject');
+
+      function openGmailCompose(to, subject, body) {
+        // Gmail web compose URL - opens in a new tab if the user is signed into Gmail
+        var gmailUrl = 'https://mail.google.com/mail/?view=cm&fs=1'
+          + '&to=' + encodeURIComponent(to || '')
+          + '&su=' + encodeURIComponent(subject || '')
+          + '&body=' + encodeURIComponent(body || '');
+        window.open(gmailUrl, '_blank', 'noopener,noreferrer');
+      }
+
+      if (contactForm) {
+        contactForm.addEventListener('submit', function (e) {
+          e.preventDefault();
+          try {
+            var name = (document.getElementById('fullname') || {}).value || '';
+            var fromEmail = (document.getElementById('email') || {}).value || '';
+            var phone = (document.getElementById('phone') || {}).value || '';
+            var message = (document.getElementById('message') || {}).value || '';
+            var to = emailToInput ? emailToInput.value : 'pratikmahato7@gmail.com';
+            var subject = defaultSubjectInput ? defaultSubjectInput.value : 'New appointment request from website';
+
+            var bodyLines = [];
+            if (name) bodyLines.push('Name: ' + name);
+            if (fromEmail) bodyLines.push('Email: ' + fromEmail);
+            if (phone) bodyLines.push('Phone: ' + phone);
+            bodyLines.push('');
+            bodyLines.push('Message:');
+            bodyLines.push(message);
+
+            var body = bodyLines.join('\n');
+
+            // Open Gmail compose in a new tab with prefilled content
+            openGmailCompose(to, subject, body);
+
+            // UX feedback
+            if (statusDiv) {
+              statusDiv.textContent = 'Opened Gmail compose in a new tab. If it did not open, please email directly at ' + to;
+            }
+
+            // Optionally reset the form (comment/uncomment as desired)
+            // contactForm.reset();
+          } catch (err) {
+            if (statusDiv) statusDiv.textContent = 'Unable to open Gmail compose. Please email directly at ' + (emailToInput ? emailToInput.value : 'pratikmahato7@gmail.com');
+          }
+        });
+      }
+
+      // Polyfill: Element.remove for very old browsers
+      if (!('remove' in Element.prototype)) {
+        Element.prototype.remove = function () { if (this.parentNode) this.parentNode.removeChild(this); };
+      }
+
+    })();
+  </script>
+</body>
+</html>
